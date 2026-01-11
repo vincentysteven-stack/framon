@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRAMON Café - Experiencia Cafetera Moderna</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --cafe-primario: #8B4513;
+            --cafe-secundario: #D2691E;
+            --cafe-claro: #F5DEB3;
+            --beige: #FAF3E0;
+            --marron-oscuro: #5D4037;
+            --texto-oscuro: #333333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: var(--texto-oscuro);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Navegación */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1);
+            transition: all 0.3s ease;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--cafe-primario) !important;
+            letter-spacing: 1px;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--marron-oscuro) !important;
+            margin: 0 8px;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--cafe-secundario) !important;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(93, 64, 55, 0.85), rgba(139, 69, 19, 0.8)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 140px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Botones */
+        .btn-FRAMON {
+            background-color: var(--cafe-primario);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-FRAMON:hover {
+            background-color: var(--cafe-secundario);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(139, 69, 19, 0.2);
+            color: white;
+        }
+        
+        .btn-outline-FRAMON {
+            border: 2px solid var(--cafe-primario);
+            color: var(--cafe-primario);
+            padding: 10px 26px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-FRAMON:hover {
+            background-color: var(--cafe-primario);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Secciones */
+        .section-title {
+            color: var(--cafe-primario);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background-color: var(--cafe-secundario);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .bg-beige {
+            background-color: var(--beige);
+        }
+        
+        /* Tarjetas */
+        .card-producto {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.4s, box-shadow 0.4s;
+            height: 100%;
+            background-color: white;
+        }
+        
+        .card-producto:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.15);
+        }
+        
+        .card-img-top {
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .card-title {
+            color: var(--cafe-primario);
+            font-weight: 700;
+        }
+        
+        /* Acerca de */
+        .about-img {
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Testimonios */
+        .testimonial-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            height: 100%;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+        }
+        
+        .client-name {
+            color: var(--cafe-primario);
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        
+        /* Menú */
+        .menu-item {
+            border-bottom: 1px dashed #ddd;
+            padding: 15px 0;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            color: var(--marron-oscuro);
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: var(--cafe-primario);
+        }
+        
+        .item-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+        
+        /* Contacto */
+        .contact-info {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        .contact-icon {
+            background-color: var(--cafe-claro);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: var(--cafe-primario);
+            font-size: 1.2rem;
+        }
+        
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .form-control:focus {
+            border-color: var(--cafe-secundario);
+            box-shadow: 0 0 0 0.25rem rgba(139, 69, 19, 0.25);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--marron-oscuro);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .footer-link {
+            color: var(--cafe-claro);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--cafe-secundario);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Mapa - ESTILOS CORREGIDOS */
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 100%;
+            position: relative;
+            padding-bottom: 56.25%; /* Relación 16:9 para responsividad */
+            height: 0;
+        }
+        
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: 0;
+        }
+        
+        /* Responsividad */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0 70px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.6rem;
+            }
+            
+            .map-container {
+                padding-bottom: 75%; /* Relación 4:3 para móviles */
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn-FRAMON, .btn-outline-FRAMON {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Animaciones */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-cup-hot-fill me-2"></i>FRAMON
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#acerca">Acerca de</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menú</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+                <a href="#contacto" class="btn btn-FRAMON ms-lg-3 mt-3 mt-lg-0">Visítanos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h1 class="fade-in">FRAMON Café</h1>
+                    <p class="fade-in" style="transition-delay: 0.2s">Donde cada taza cuenta una historia. Experimenta el auténtico sabor del café de especialidad en un ambiente moderno y acogedor.</p>
+                    <div class="fade-in" style="transition-delay: 0.4s">
+                        <a href="#menu" class="btn btn-FRAMON me-2 mb-2">Ver Menú</a>
+                        <a href="#contacto" class="btn btn-outline-FRAMON mb-2">Horarios</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acerca de -->
+    <section id="acerca" class="bg-beige">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="section-title">Nuestra Historia</h2>
+                    <p>FRAMON nació de la pasión por el café de especialidad y el deseo de crear un espacio donde la comunidad pueda disfrutar de momentos especiales con cada taza.</p>
+                    <p>Seleccionamos granos de las mejores regiones cafetaleras del mundo y los tostamos artesanalmente para garantizar un sabor único en cada preparación.</p>
+                    <p>Nuestro equipo de baristas certificados está comprometido con ofrecerte la mejor experiencia cafetera, desde el clásico espresso hasta creaciones innovadoras.</p>
+                    <a href="#contacto" class="btn btn-FRAMON mt-3">Conoce nuestro local</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
+                                 alt="Interior de FRAMON Café" class="img-fluid about-img mb-3">
+                        </div>
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1768&q=80" 
+                                 alt="Barista preparando café" class="img-fluid about-img mt-5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menú -->
+    <section id="menu">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title">Nuestro Menú</h2>
+                    <p>Descubre nuestra selección de bebidas y delicias preparadas con ingredientes de la más alta calidad.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h4 class="mb-4" style="color: var(--cafe-primario); font-weight: 700;">
+                        <i class="bi bi-cup-hot me-2"></i>Bebidas Calientes
+                    </h4>
+                    <div class="menu-item">
+                        <div class="d-flex justify-content-between">
+                            <span class="item-name">Espresso</span>
+                            <span class="item-price">bs2.50</span>
+                        </div>
+                        <p class="item-description">Café puro y concentrado, perfecto para los amantes del café intenso.</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="d-flex justify-content-between">
+                            <span class="item-name">Cappuccino</span>
+                            <span class="item-price">bs3.80</span>
+                        </div>
+                        <p class="item-description">Espresso con leche vaporizada y una generosa capa de espuma.</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="d-flex justify-content-between">
+                            <span class="item-name">Latte Art</span>
+                            <span class="item-price">bs4.20</span>
+                        </div>
+                        <p class="item-description">Espresso con leche vaporizada y diseño artístico en la superficie.</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="d-flex justify-content-between">
+                            <span class="item-name">Mocha</span>
+                            <span class="item-price">bs4.50</span>
+                        </div>
+                        <p class="item-description">Deliciosa combinación de espresso, chocolate y leche vaporizada.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <h4 class="mb-4" style="color: var(--cafe-primario); font-weight: 700;">
+                        <i class="bi bi-cup-straw me-2"></i>Bebidas Frías
+                    </h4>
+                    <div class="menu-item">
+                        <div class="d-flex justify-content-between">
+                            <span class="item-name">Cold Brew</span>
+                            <span class="item-price">bs4.00</span>
+                        </div>
+                        <p class="item-description">Café infusionado en frío durante 18 horas para un sabor suave y menos ácido.</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="d-flex justify-content-between">
+                            <span class="item-name">Frappé FRAMON</span>
+                            <span class="item-price">bs5.50</span>
+                        </div>
+                        <p class="item-description">Nuestra especialidad: café helado batido con helado de vainilla.</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="d-flex justify-content-between">
+                            <span class="item-name">Té Helado</span>
+                            <span class="item-price">bs3.50</span>
+                        </div>
+                        <p class="item-description">Té negro o verde infusionado y servido con hielo y limón.</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="d-flex justify-content-between">
+                            <span class="item-name">Smoothie de Frutas</span>
+                            <span class="item-price">bs5.00</span>
+                        </div>
+                        <p class="item-description">Mezcla refrescante de frutas de temporada y yogur natural.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos -->
+    <section id="productos" class="bg-beige">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title">Cafés de Especialidad</h2>
+                    <p>Descubre nuestra selección de granos premium de las mejores regiones cafetaleras del mundo.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-producto h-100">
+                        <img src="https://images.unsplash.com/photo-1587734195503-9048377c6d28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             class="card-img-top" alt="Café Colombiano">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Colombiano Supremo</h5>
+                            <p class="card-text">Notas de chocolate negro, caramelo y un toque cítrico. Granos 100% arábica de la región de Huila.</p>
+                            <div class="mt-auto">
+                                <span class="fw-bold" style="color: var(--cafe-primario);">bs18.00 / 250g</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-producto h-100">
+                        <img src="https://images.unsplash.com/photo-1510707577719-ae7c9b788690?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             class="card-img-top" alt="Café Etiopía">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Etiopía Yirgacheffe</h5>
+                            <p class="card-text">Notas florales, de bergamota y jazmín. Café de origen único con un perfil aromático excepcional.</p>
+                            <div class="mt-auto">
+                                <span class="fw-bold" style="color: var(--cafe-primario);">bs22.00 / 250g</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-producto h-100">
+                        <img src="https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" 
+                             class="card-img-top" alt="Café Brasil">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Brasil Santos</h5>
+                            <p class="card-text">Notas de nueces, cacao y un toque especiado. Perfecto para espresso y métodos de filtro.</p>
+                            <div class="mt-auto">
+                                <span class="fw-bold" style="color: var(--cafe-primario);">bs16.00 / 250g</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card card-producto h-100">
+                        <img src="https://images.unsplash.com/photo-1510707577719-ae7c9b788690?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             class="card-img-top" alt="Café Guatemala">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Guatemala Antigua</h5>
+                            <p class="card-text">Notas de chocolate amargo, especias y un final limpio. Café de altura con cuerpo balanceado.</p>
+                            <div class="mt-auto">
+                                <span class="fw-bold" style="color: var(--cafe-primario);">bs20.00 / 250g</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title">Visítanos</h2>
+                    <p>Ven a disfrutar de una experiencia cafetera única en nuestro acogedor local en Bolivia. ¡Te esperamos!</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h5>Dirección</h5>
+                        <p>Calle Sucre<br>Avenida 27 de Mayo<br>Cerca de Avenida Pando<br>Bolivia</p>
+                        
+                        <div class="contact-icon mt-4">
+                            <i class="bi bi-clock"></i>
+                        </div>
+                        <h5>Horarios</h5>
+                        <p>Lunes a Viernes: 7:00 - 21:00<br>Sábados: 8:00 - 22:00<br>Domingos: 9:00 - 20:00</p>
+                        
+                        <div class="contact-icon mt-4">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h5>Teléfono</h5>
+                        <p>+591 1234 5678</p>
+                        
+                        <div class="contact-icon mt-4">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <h5>Email</h5>
+                        <p>hola@FRAMONcafe.com</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-8">
+                    <!-- Mapa con la URL CORRECTA que proporcionaste -->
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d936.7687079922129!2d-64.91297533174058!3d-14.832422338725591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93dd714ce8802981%3A0xd23114107a76b91c!2sFramon!5e0!3m2!1ses-419!2sbo!4v1768157271520!5m2!1ses-419!2sbo"
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    
+                    <h4 class="mb-3" style="color: var(--cafe-primario);">¿Cómo llegar?</h4>
+                    <p>Nos encontramos en una ubicación céntrica y accesible. Puedes visitarnos fácilmente en transporte público o en vehículo particular.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <h5 style="color: var(--cafe-primario);">Transporte público</h5>
+                            <ul>
+                                <li>Líneas de microbús: 10, 15, 22</li>
+                                <li>Taxi compartido: Ruta Centro-Sur</li>
+                                <li>Parada principal: Avenida 27 de Mayo</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 style="color: var(--cafe-primario);">Estacionamiento</h5>
+                            <ul>
+                                <li>Estacionamiento en la calle (zona permitida)</li>
+                                <li>Estacionamiento cercano: Plaza Central</li>
+                                <li>Área de parqueo para bicicletas disponible</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-whatsapp"></i></a>
+                        <a href="#"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-logo">FRAMON</div>
+                    <p>Donde cada taza cuenta una historia. Experimenta el auténtico sabor del café de especialidad en Bolivia.</p>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="mb-3">Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#inicio" class="footer-link">Inicio</a></li>
+                        <li class="mb-2"><a href="#acerca" class="footer-link">Acerca de</a></li>
+                        <li class="mb-2"><a href="#menu" class="footer-link">Menú</a></li>
+                        <li class="mb-2"><a href="#productos" class="footer-link">Productos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="mb-3">Horarios</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">Lun-Vie: 7:00 - 21:00</li>
+                        <li class="mb-2">Sábados: 8:00 - 22:00</li>
+                        <li class="mb-2">Domingos: 9:00 - 20:00</li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3">
+                    <h5 class="mb-3">Newsletter</h5>
+                    <p>Suscríbete para recibir noticias y promociones especiales de FRAMON Café.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Tu correo">
+                        <button class="btn btn-FRAMON" type="button">Suscribirse</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12 text-center copyright">
+                    <p>&copy; 2023 FRAMON Café. Todos los derechos reservados. | Diseñado con <i class="bi bi-heart-fill" style="color: var(--cafe-secundario);"></i> para los amantes del café</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Scroll suave para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Efecto de aparición al hacer scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if(elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        // Llamar al cargar la página y al hacer scroll
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+        
+        // Cambiar estilo de navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if(window.scrollY > 50) {
+                navbar.style.paddingTop = '10px';
+                navbar.style.paddingBottom = '10px';
+                navbar.style.boxShadow = '0 4px 12px rgba(139, 69, 19, 0.15)';
+            } else {
+                navbar.style.paddingTop = '15px';
+                navbar.style.paddingBottom = '15px';
+                navbar.style.boxShadow = '0 4px 12px rgba(139, 69, 19, 0.1)';
+            }
+        });
+        
+        // Inicializar elementos visibles al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            // Verificar si hay elementos en el viewport inicial
+            fadeInOnScroll();
+        });
+    </script>
+</body>
+</html>
